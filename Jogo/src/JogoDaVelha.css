@@ -1,0 +1,61 @@
+#root {
+  margin: 0 auto;
+  text-align: center;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.board{
+  display: grid;
+  grid-template-columns: repeat(3, 240px);
+  grid-template-rows: repeat(3, 200px);
+}
+
+.board.GameOver{
+  opacity: 0.8;
+}
+
+.cell{
+  display: grid;
+  background-color:azure;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  font-size: 30px;
+  font-weight: bold;
+  color: black;
+  cursor: pointer;
+  
+}
+
+.cell.O{
+  background-color: aqua;
+}
+
+.cell.X{
+  background-color: blueviolet;
+}
+
+.cell.O .cell.X .GameOver .cell{
+  cursor: not-allowed;
+}
+
+.footer{
+  text-align: center;
+}
+
+.winnerMessage{
+  margin: 2rem;
+}
+
+.winnerMessage span.O{
+  color: aqua;
+}
+
+.winnerMessage span.X{
+  color: blueviolet;
+}
