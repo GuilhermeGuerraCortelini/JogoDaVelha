@@ -7,6 +7,8 @@ function JogoDavelha() {
   const [board, setBoard] = useState(emptyBoard)
   const [currentPlayer, setCurrentPlayer] = useState("X")
   const [winner, setWinner] = useState()
+  const [placarX, setPlacarX] = useState(0)
+  const [placarO, setPlacarO] = useState(0)
 
   const handleCellClick = (index) => {
     // Não deixar substituir a jogada
@@ -45,8 +47,14 @@ function JogoDavelha() {
 
     // Verificar vencedor
     possibleWaysToWin.forEach(cells => {
-      if (cells.every(cell => cell === "X")) setWinner("X")
-      if (cells.every(cell => cell === "O")) setWinner("O")
+      if (cells.every(cell => cell === "X")) {
+        setWinner("X")
+        setPlacarX(placarX++)
+      }
+      if (cells.every(cell => cell === "O")) {
+        setWinner("O")
+        setPlacarO(placarO++)
+      }
     })
 
     checkDraw()
@@ -71,6 +79,7 @@ function JogoDavelha() {
   return (
     <main>
       <h1 className='title'>Jogo da velha</h1>
+      <span>Placar: X {placarX} / O {placarO}</span>
       <div className={`board ${winner ? "GameOver" : ""}`}>
         {board.map((item, index) => (
           <div key={index} className={`cell ${item}`} onClick={() => handleCellClick(index)}>
@@ -78,7 +87,7 @@ function JogoDavelha() {
           </div>
         ))}
       </div>
-
+      <button onClick={resetGame}>Recomeçar</button>
       {winner &&
         <footer>
           {winner === "D" ?
@@ -86,13 +95,12 @@ function JogoDavelha() {
               <span className={winner}>Empatou!</span>
             </h2> :
             <h2 className='winnerMessage'>
-              <span className={winner}>{winner} Venceu!</span>
+              <span className={winner}>{winner} </span>
+              Venceu!
             </h2>
           }
         </footer>
       }
-      <button onClick={resetGame}>Recomeçar</button>
-
     </main>
   )
 }
