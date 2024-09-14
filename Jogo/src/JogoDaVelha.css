@@ -48,7 +48,7 @@
   text-align: center;
 }
 
-.winnerMessage{
+button{
   margin: 2rem;
 }
 
@@ -58,4 +58,18 @@
 
 .winnerMessage span.X{
   color: blueviolet;
+}
+
+.scoreboard {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.scoreboard h2 {
+  font-size: 1.5rem;
+}
+
+.scoreboard p {
+  font-size: 1.25rem;
+  margin: 5px 0;
 }
