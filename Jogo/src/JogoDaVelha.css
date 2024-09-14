@@ -3,6 +3,10 @@
   text-align: center;
 }
 
+body{
+  background-color: black;
+}
+
 *{
   margin: 0;
   padding: 0;
@@ -29,7 +33,6 @@
   font-weight: bold;
   color: black;
   cursor: pointer;
-  
 }
 
 .cell.O{
@@ -60,16 +63,11 @@ button{
   color: blueviolet;
 }
 
-.scoreboard {
-  margin: 20px 0;
-  text-align: center;
+h1{
+  padding: 20px;
+  color: white;
 }
 
-.scoreboard h2 {
-  font-size: 1.5rem;
-}
-
-.scoreboard p {
-  font-size: 1.25rem;
-  margin: 5px 0;
+button{
+  margin-top: 2em;
 }
