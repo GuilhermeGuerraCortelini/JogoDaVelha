@@ -15,6 +15,29 @@ function JogoDavelha() {
     D: 0, // Empates
   });
 
+  // Carregar o estado do jogo do localStorage ao montar o componente
+  useEffect(() => {
+    const savedGame = localStorage.getItem('gameState');
+    if (savedGame) {
+      const { board, currentPlayer, winner, scores } = JSON.parse(savedGame);
+      setBoard(board);
+      setCurrentPlayer(currentPlayer);
+      setWinner(winner);
+      setScores(scores);
+    }
+  }, []);
+
+  // Salvar o estado do jogo no localStorage sempre que mudar
+  useEffect(() => {
+    const gameState = {
+      board,
+      currentPlayer,
+      winner,
+      scores,
+    };
+    localStorage.setItem('gameState', JSON.stringify(gameState));
+  }, [board, currentPlayer, winner, scores]);
+
   const handleCellClick = (index) => {
     // Não deixar substituir a jogada
     if (board[index] !== "" || winner) return;
@@ -68,20 +91,32 @@ function JogoDavelha() {
   }, [winner]);
 
   const resetGame = () => {
-    setCurrentPlayer("X");
+    // Apenas reiniciar o tabuleiro e o vencedor, mantendo o placar e o jogador atual
     setBoard(emptyBoard);
     setWinner(null);
   };
+
+  const zerar = () => {
+    setScores({
+      X: 0,
+      O: 0,
+      D: 0,
+    });
+  }
 
   return (
     <main>
       <h1 className='title'>Jogo da Velha</h1>
 
+      {/* Exibir o placar */}
       <div className='scoreboard'>
         <h2>Placar</h2>
+        <br/>
         X: {scores.X} |
         O: {scores.O} |
         Empates: {scores.D}
+        <br/>
+        <button onClick={zerar}>Zerar</button>
       </div>
 
       <div className={`board ${winner ? "GameOver" : ""}`}>
@@ -103,7 +138,7 @@ function JogoDavelha() {
               <span className={winner}>Empatou!</span>
             ) : (
               <>
-                <span className={winner}>{winner}</span> Venceu!
+                <span className={winner}>{winner} </span> Venceu!
               </>
             )}
           </h2>
