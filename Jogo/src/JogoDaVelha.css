@@ -3,10 +3,6 @@
   text-align: center;
 }
 
-body{
-  background-color: black;
-}
-
 *{
   margin: 0;
   padding: 0;
@@ -47,27 +43,10 @@ body{
   cursor: not-allowed;
 }
 
-.footer{
-  text-align: center;
-}
-
-button{
-  margin: 2rem;
-}
-
 .winnerMessage span.O{
   color: aqua;
 }
 
 .winnerMessage span.X{
   color: blueviolet;
-}
-
-h1{
-  padding: 20px;
-  color: white;
-}
-
-button{
-  margin-top: 2em;
 }
